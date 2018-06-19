@@ -43,6 +43,7 @@ Plug 'vim-scripts/Greplace.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-conflicted'
+Plug 'fatih/vim-go'
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>
@@ -169,7 +170,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 imap jj <ESC>
 imap kk <ESC>
 imap jk <ESC>
+nmap <Leader>h :windo wincmd H<CR>
 
+
+" 'quote' a word
+ nmap qg :silent! normal mpea`<Esc>bi`<Esc>`pl
+" " double "quote" a word
+ nmap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+ nmap dq :silent! normal mpea"<Esc>bi"<Esc>`pl
+" " remove quotes from a word
+ nmap qr :silent! normal mpeld bhd `ph<CR>
+ nmap <Leader>jf :%!python -m json.tool<CR>
 "Tabulize
 nmap <Leader>t <Esc>:Tabularize/
 "nmap <TAB> <C-w> 
