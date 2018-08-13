@@ -33,12 +33,12 @@ Plug 'Valloric/YouCompleteMe'
 "Plug 'shawncplus/phpcomplete.vim'
 Plug 'Shougo/vimproc'
 Plug 'Shougo/unite.vim'
-Plug 'm2mdas/phpcomplete-extended'
-Plug 'm2mdas/phpcomplete-extended-laravel'
+"Plug 'm2mdas/phpcomplete-extended'
+"Plug 'm2mdas/phpcomplete-extended-laravel'
 Plug 'craigemery/vim-autotag'
 Plug 'majutsushi/tagbar'
 Plug 'blueyed/vim-diminactive'
-Plug 'hesselbom/vim-hsftp'
+Plug 'mikemasam/vim-hsftp'
 Plug 'vim-scripts/Greplace.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
@@ -95,19 +95,19 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_php_phpmd_exec = './bin/phpmd'
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
 
-let g:phpcomplete_relax_static_constraint = 1
-let g:phpcomplete_complete_for_unknown_classes = 1
-let g:phpcomplete_parse_docblock_comments = 1
-let g:phpcomplete_cache_taglists = 1
-let g:phpcomplete_enhance_jump_to_definition = 1
+"let g:phpcomplete_relax_static_constraint = 1
+"let g:phpcomplete_complete_for_unknown_classes = 1
+"let g:phpcomplete_parse_docblock_comments = 1
+"let g:phpcomplete_cache_taglists = 1
+"let g:phpcomplete_enhance_jump_to_definition = 1
 set completeopt-=preview
 
 "For YCM
 "setlocal omnifunc=phpcomplete#CompletePHP
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
-let g:phpcomplete_index_composer_command = "composer"
+"autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+"let g:phpcomplete_index_composer_command = "composer"
 
 "For PHP Autocompilation
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
@@ -172,6 +172,8 @@ imap kk <ESC>
 imap jk <ESC>
 nmap <Leader>h :windo wincmd H<CR>
 
+"mult terminal copy paste
+set clipboard=unnamed
 
 " 'quote' a word
  nmap qg :silent! normal mpea`<Esc>bi`<Esc>`pl
@@ -217,7 +219,7 @@ let g:tmux_navigator_save_on_switch = 2
 let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 "let g:airline#extensions#tmuxline#enabled = 0
-
+let g:syntastic_go_checkers = ["gofmt","go", "govet", "errcheck"]
 
 
 set directory^=$HOME/.vim/swaps//
