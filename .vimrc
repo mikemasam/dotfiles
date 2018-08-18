@@ -44,6 +44,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-conflicted'
 Plug 'fatih/vim-go'
+Plug 'tomtom/tcomment_vim'
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>

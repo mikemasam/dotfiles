@@ -60,20 +60,26 @@ mnrt_download_latest_db(){
 }
 mnrt_import_latest_db(){
   echo 'Backing up remote latest database........'
-  ssh acex1@41.59.225.90 'bash -s' < ~/mnrt_db/remote-backup.sh
+  ssh acex1@41.59.225.90 'bash -s' < ~/mnrt/remote-backup.sh
   echo 'Downloading latest database........'
-  scp acex1@41.59.225.90:/home/acex1/database_backup/backup_latest_db.sql ~/mnrt_db/current_db.sql
+  scp acex1@41.59.225.90:/home/acex1/database_backup/backup_latest_db.sql ~/mnrt/current_db.sql
   export _time='mnrt_'$(date +%s)
   echo 'Creating new database '$_time'........'
   psql -U postgres -c 'create database '$_time';'
   echo 'Importing latest database to '$_time'........'
-  psql -U postgres $_time < ~/mnrt_db/current_db.sql
+  psql -U postgres $_time < ~/mnrt/current_db.sql
   echo 'Importing latest database to '$_time' successful'
   echo '---------------------------------------'
 }
 
+mnrt_pull_develop(){
+  echo 'Making changes live........'
+  ssh acex1@41.59.225.90 'bash -s' < ~/mnrt/remote-pull-changes.sh
+  echo 'Done........'
+}
+
 bash_test(){
-  ssh acex1@41.59.225.90 'bash -s' < ~/mnrt_db/remote-backup.sh
+  ssh acex1@41.59.225.90 'bash -s' < ~/mnrt/remote-backup.sh
 }
 kbearer(){
   export JWT_AUTH_TOKEN=$1;
