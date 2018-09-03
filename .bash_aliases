@@ -1,3 +1,5 @@
+alias sudo='sudo '
+alias ok="ping google.com"
 alias cls='clear'
 alias c='clear'
 #alias http='http --auth-type=jwt -j'
@@ -29,6 +31,8 @@ alias pworkspace='cd ~/workspace/docs'
 alias .='cd ..'
 alias public_ip='curl ipinfo.io/ip'
 alias mnrt_upload_pos_apk='scp ~/workspace/docs/mnrtmobile/private_release/release/app-private_release-release.apk  maliasili@41.59.82.178:/home/maliasili'
+alias ls='ls -AlhF --color=auto'
+alias :q='exit'
 
 
 # some more ls aliases
@@ -76,6 +80,34 @@ mnrt_pull_develop(){
   echo 'Making changes live........'
   ssh acex1@41.59.225.90 'bash -s' < ~/mnrt/remote-pull-changes.sh
   echo 'Done........'
+}
+
+kdeploy(){
+  echo '....Starting K Deploy....'
+  echo $1
+
+  if [ $1 == 'mnrt' ]; then
+    ssh acex1@41.59.225.90 'bash -s' < ~/deploy_script/mnrt.sh
+  fi
+
+  if [ $1 == 'cashx' ]; then
+    ssh 139.59.185.170 'bash -s' < ~/deploy_script/cashx.sh
+  fi
+
+  if [ $1 == 'dereva' ]; then
+    ssh masamtechnologies.com 'bash -s' < ~/deploy_script/dereva.sh
+  fi
+
+  echo 'Done........'
+}
+
+masam_public_ip(){
+  export public_address=$(curl -s ipinfo.io/ip)
+  #Create temporary file with new line in place
+  cat ~/deploy_script/masam_public_ip.sh | sed -e "s/public_ip/"$public_address"/" > ~/deploy_script/masam_public_ip.sh.tmp
+  #Copy the new file over the original file
+  ssh masamtechnologies.com 'bash -s' < ~/deploy_script/masam_public_ip.sh.tmp
+  rm ~/deploy_script/masam_public_ip.sh.tmp
 }
 
 bash_test(){

@@ -28,7 +28,7 @@ Plug 'sbdchd/neoformat'
 "Plug 'goatslacker/mango'
 Plug 'kien/ctrlp.vim'
 "Auto Completing
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
 "Plug 'shawncplus/phpcomplete.vim'
 Plug 'Shougo/vimproc'
@@ -111,7 +111,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 "let g:phpcomplete_index_composer_command = "composer"
 
 "For PHP Autocompilation
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:autotagTagsFile=".git/tags"
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
