@@ -21,22 +21,18 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'elzr/vim-json'
 Plug 'yggdroot/indentline'
 Plug 'edkolev/tmuxline.vim'
-"Plug 'itchyny/lightline.vim' 
 Plug 'edkolev/promptline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sbdchd/neoformat'
-"Plug 'goatslacker/mango'
 Plug 'kien/ctrlp.vim'
 "Auto Completing
 "Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
 "Plug 'shawncplus/phpcomplete.vim'
-Plug 'Shougo/vimproc'
-Plug 'Shougo/unite.vim'
-"Plug 'm2mdas/phpcomplete-extended'
-"Plug 'm2mdas/phpcomplete-extended-laravel'
-Plug 'craigemery/vim-autotag'
-Plug 'majutsushi/tagbar'
+"Plug 'Shougo/vimproc'
+"Plug 'Shougo/unite.vim'
+"Plug 'craigemery/vim-autotag'
+"Plug 'majutsushi/tagbar'
 Plug 'blueyed/vim-diminactive'
 Plug 'mikemasam/vim-hsftp'
 Plug 'vim-scripts/Greplace.vim'
@@ -44,55 +40,58 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-conflicted'
 Plug 'fatih/vim-go'
-Plug 'tomtom/tcomment_vim'
+"Plug 'tomtom/tcomment_vim'
+"Plug 'm2mdas/phpcomplete-extended'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'w0rp/ale'
+Plug 'StanAngeloff/php.vim'
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>
 nmap <space>fu :Hupload<CR>
 " fugitive git bindings
- nnoremap <space>ga :Git add %:p<CR><CR>
- nnoremap <space>gs :Gstatus<CR>
- nnoremap <space>gc :Gcommit -v -q<CR>
- nnoremap <space>gt :Gcommit -v -q %:p<CR>
- nnoremap <space>gd :Gdiff<CR>
- nnoremap <space>ge :Gedit<CR>
- nnoremap <space>gr :Gread<CR>
- nnoremap <space>gw :Gwrite<CR><CR>
- nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
- nnoremap <space>gp :Ggrep<Space>
- nnoremap <space>gm :Gmove<Space>
- nnoremap <space>gb :Git branch<Space>
- nnoremap <space>go :Git checkout<Space>
- nnoremap <space>gps :silent Gpush<CR>
- nnoremap <space>gpl :silent Gpull<CR>
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gr :Gread<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <space>gp :Ggrep<Space>
+nnoremap <space>gm :Gmove<Space>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
+nnoremap <space>gps :silent Gpush<CR>
+nnoremap <space>gpl :silent Gpull<CR>
 "let g:gitgutter_highlight_lines = 1
 "let g:NERDTreeShowIgnoredStatus = 1
-"set signcolumn=yes
-let g:gitgutter_sign_column_always=1
+set signcolumn=yes
 let g:gitgutter_max_signs = 1500
 let g:airline_theme='hybrid'
 let g:airline#extensions#tabline#enabled = 1
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "m",
-    \ "Staged"    : "+",
-    \ "Untracked" : "~",
-    \ "Renamed"   : "r",
-    \ "Unmerged"  : "-",
-    \ "Deleted"   : "d",
-    \ "Dirty"     : "x",
-    \ "Clean"     : "^",
-    \ 'Ignored'   : '!',
-    \ "Unknown"   : "?"
-    \ }
+            \ "Modified"  : "m",
+            \ "Staged"    : "+",
+            \ "Untracked" : "~",
+            \ "Renamed"   : "r",
+            \ "Unmerged"  : "-",
+            \ "Deleted"   : "d",
+            \ "Dirty"     : "x",
+            \ "Clean"     : "^",
+            \ 'Ignored'   : '!',
+            \ "Unknown"   : "?"
+            \ }
 
 
-
+let g:airline#extensions#ale#enabled = 1
 let g:syntastic_php_checkers = ['phpmd', 'php']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"let g:syntastic_php_phpcs_args = "--standard=psr2"
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_php_phpcs_args = "--standard=psr2"
 let g:syntastic_php_phpmd_exec = './bin/phpmd'
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
 
@@ -101,19 +100,23 @@ let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,u
 "let g:phpcomplete_parse_docblock_comments = 1
 "let g:phpcomplete_cache_taglists = 1
 "let g:phpcomplete_enhance_jump_to_definition = 1
-set completeopt-=preview
+"set completeopt=noinsert,menuone,noselect
 
 "For YCM
 "setlocal omnifunc=phpcomplete#CompletePHP
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"
+"let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 "let g:phpcomplete_index_composer_command = "composer"
 
 "For PHP Autocompilation
 "let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:autotagTagsFile=".git/tags"
-
+"let g:autotagTagsFile=".git/tags"
+"let g:autotagDisabled=1
+let g:gutentags_cache_dir="~/work/tmp"
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let g:ctrlp_custom_ignore = 'node_modules\|bower_compnents\|DS_Store\|git'
@@ -121,10 +124,16 @@ let g:ctrlp_max_files = 0
 " Search with ctrl+p from current directory instead of project root
 let g:ctrlp_working_path_mode = 0
 
+"let g:EditorConfig_core_mode = 'external_command'
+"set completeopt-=preview
+"set completeopt+=menu,menuone,noinsert,noselect
+"set shortmess+=c
+
+
 "GT to move between open file
 set backupcopy=yes
 set autoread
-
+set incsearch
 set nobackup
 set nowritebackup
 set showmatch
@@ -136,7 +145,6 @@ set smartindent
 set incsearch
 syntax on
 set cursorline
-set relativenumber
 set number
 set lazyredraw
 set wildignorecase
@@ -151,13 +159,19 @@ set showmatch
 set hlsearch
 set smartindent
 
-
+set nocursorline
+"set synmaxcol=120
+"disable ctrlp caching
+let g:ctrlp_use_caching = 0
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
+
 let g:onedark_termcolors=256
 "set background=light
 "autocmd vimenter * NERDTree
@@ -177,16 +191,16 @@ nmap <Leader>h :windo wincmd H<CR>
 set clipboard=unnamed
 
 " 'quote' a word
- nmap qg :silent! normal mpea`<Esc>bi`<Esc>`pl
+nmap qg :silent! normal mpea`<Esc>bi`<Esc>`pl
 " " double "quote" a word
- nmap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
- nmap dq :silent! normal mpea"<Esc>bi"<Esc>`pl
+nmap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+nmap dq :silent! normal mpea"<Esc>bi"<Esc>`pl
 " " remove quotes from a word
- nmap qr :silent! normal mpeld bhd `ph<CR>
- nmap <Leader>jf :%!python -m json.tool<CR>
+nmap qr :silent! normal mpeld bhd `ph<CR>
+nmap <Leader>jf :%!python -m json.tool<CR>
 "Tabulize
 nmap <Leader>t <Esc>:Tabularize/
-"nmap <TAB> <C-w> 
+"nmap <TAB> <C-w>
 
 "imap <TAB> <C-w>
 
@@ -195,7 +209,7 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 nnoremap <Leader>e :bnext<CR>
-nnoremap <Leader>w :bprevious<CR> 
+nnoremap <Leader>w :bprevious<CR>
 
 nmap <space> :
 vmap <space> <Esc>
@@ -207,7 +221,6 @@ execute pathogen#infect()
 
 set statusline+=%{fugitive#statusline()}
 set statusline+=%{ConflictedVersion()}
-set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
@@ -229,45 +242,38 @@ set directory^=$HOME/.vim/swaps//
 "Tmuxline - :TmuxlineSnapshot! ~/.dotfiles/.tmuxline.tmux.conf
 "Far bottom right shows DHCP WiFi IP, with an H appended at home
 let g:tmuxline_preset = {
-      \'a'       : '',
-      \'b disabled'       : '',
-      \'c disabled'       : '',
-      \'win'     : ['#I', '#W'],
-      \'cwin'    : ['#I', '#W'],
-      \'x'       : '#(~/tmux-battery)',
-      \'y'       : ['%a', '%Y-%m-%d', '%l:%M%p'],
-      \'z'       : ['#(whoami)'],
-      \'options' : {'status-justify': 'left'}}
+            \'a'       : '',
+            \'b disabled'       : '',
+            \'c disabled'       : '',
+            \'win'     : ['#I', '#W'],
+            \'cwin'    : ['#I', '#W'],
+            \'x'       : '#(~/tmux-battery)',
+            \'y'       : ['%a', '%Y-%m-%d', '%l:%M%p'],
+            \'z'       : ['#(whoami)'],
+            \'options' : {'status-justify': 'left'}}
 
 "Promptline - :PromptlineSnapshot! ~/.dotfiles/.promptline.sh airline
 "These functions disable the host and user when in tmux, as they are shown in
 "  the bottom right corner of the window
 fun! Joshthegeek_promptline_host(...)
-  " host is \h in bash, %m in zsh
-  return '$([[ -n ${TMUX-} ]] && exit 1; [[ -n ${ZSH_VERSION-} ]] && print %m || printf "%s" \\h)'
+    " host is \h in bash, %m in zsh
+    return '$([[ -n ${TMUX-} ]] && exit 1; [[ -n ${ZSH_VERSION-} ]] && print %m || printf "%s" \\h)'
 endfun
 
 fun! Joshthegeek_promptline_user(...)
-  " user is \u in bash, %n in zsh
-  return '$([[ -n ${TMUX-} ]] && exit 1; [[ -n ${ZSH_VERSION-} ]] && print %n || printf "%s" \\u)'
+    " user is \u in bash, %n in zsh
+    return '$([[ -n ${TMUX-} ]] && exit 1; [[ -n ${ZSH_VERSION-} ]] && print %n || printf "%s" \\u)'
 endfun
 
 let g:promptline_preset = {
-      \'a': [ Joshthegeek_promptline_host(), Joshthegeek_promptline_user() ],
-      \'b': [ promptline#slices#cwd({ 'dir_limit': 2 }) ],
-      \'z': [ promptline#slices#vcs_branch(), promptline#slices#jobs() ],
-      \'warn': [ promptline#slices#battery(), promptline#slices#last_exit_code() ]}
+            \'a': [ Joshthegeek_promptline_host(), Joshthegeek_promptline_user() ],
+            \'b': [ promptline#slices#cwd({ 'dir_limit': 2 }) ],
+            \'z': [ promptline#slices#vcs_branch(), promptline#slices#jobs() ],
+            \'warn': [ promptline#slices#battery(), promptline#slices#last_exit_code() ]}
 "let g:promptline_theme = 'airline'
 let g:promptline_theme = 'hybrid'
 " Uncomment the following to have Vim jump to the last position when
 " " reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-autocmd! bufwritepost .vimrc source %
-
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
-
