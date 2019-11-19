@@ -17,10 +17,6 @@ alias klater='tmux detach'
 alias knwork='tmux new -s pluto'
 alias kreload='source ~/.bashrc'
 alias kwa='sudo service apache2 restart'
-alias kwp='sudo service postgresql restart'
-alias kwm='sudo service mysql restart'
-alias kwams='sudo service apache2 stop & service mysql stop'
-alias kwap='sudo service apache2 restart & service postgresql restart'
 alias kwork='tmux a -t pluto'
 alias kws='sudo service apache2 status & service postgresql status & service mysql status'
 alias yii='php yii'
@@ -34,12 +30,20 @@ alias public_ip='curl ipinfo.io/ip'
 alias mnrt_upload_pos_apk='scp ~/work/projects/mnrtmobile/release/app-release.apk deploy@41.59.82.178:~'
 alias ls='ls -AlhF --color=auto'
 alias :q='exit'
+alias fix_dns='content=$(cat /etc/resolv.conf); sudo bash -c "echo -en \"nameserver 8.8.8.8\n$content\n\" >/etc/resolv.conf"'
 
-kw() {
+kwp() {
     #do things with parameters like $1 such as
     sudo service apache2 "$1"
     sudo service postgresql "$1"
+    echo '--------apache and postgres started-----------'
+}
+
+kwm() {
+    #do things with parameters like $1 such as
+    sudo service apache2 "$1"
     sudo service mysql "$1"
+    echo '--------apache and mysql started---------------'
 }
 
 # some more ls aliases
@@ -68,13 +72,13 @@ alias gbuild_windows="env GOOS=windows GOARCH=386 go build"
 
 
 mnrt_download_latest_db(){
-    scp acex1@41.59.225.90:/home/acex1/database_backup/backup_latest_db.sql current_db.sql
+    scp acex1@test.mnrt.go.tz:/home/acex1/database_backup/backup_latest_db.sql current_db.sql
 }
 mnrt_import_latest_db(){
     echo 'Backing up remote latest database........'
-    ssh acex1@41.59.225.90 'bash -s' < ~/mnrt_script/remote-backup.sh
+    ssh acex1@test.mnrt.go.tz 'bash -s' < ~/mnrt_script/remote-backup.sh
     echo 'Downloading latest database........'
-    scp acex1@41.59.225.90:/home/acex1/database_backup/backup_latest_db.sql ~/mnrt_script/db/current_db.sql
+    scp acex1@test.mnrt.go.tz:/home/acex1/database_backup/backup_latest_db.sql ~/mnrt_script/db/current_db.sql
     export _time='mnrt_'$(date +%s)
     echo 'Creating new database '$_time'........'
     psql -U postgres -c 'create database '$_time';' >/dev/null 2>&1
@@ -86,7 +90,7 @@ mnrt_import_latest_db(){
 
 mnrt_pull_develop(){
     echo 'Making changes live........'
-    ssh acex1@41.59.225.90 'bash -s' < ~/mnrt_script/remote-pull-changes.sh
+    ssh acex1@test.mnrt.go.tz 'bash -s' < ~/mnrt_script/remote-pull-changes.sh
     echo 'Done........'
 }
 
@@ -95,7 +99,7 @@ kdeploy(){
     echo $1
 
     if [ $1 == 'mnrt' ]; then
-        ssh acex1@41.59.225.90 'bash -s' < ~/deploy_script/mnrt.sh
+        ssh acex1@test.mnrt.go.tz 'bash -s' < ~/deploy_script/mnrt.sh
     fi
 
     if [ $1 == 'cashx' ]; then
@@ -122,6 +126,14 @@ kdeploy(){
         #ssh deploy@41.59.82.178 'bash -s' < ~/deploy_script/mnrt_apk_deploy.sh
     fi
 
+    if [ $1 == 'collect_apk' ]; then
+        scp ~/work/docs/mnrtmobile/mnrt_collect/release/app-release.apk deploy@41.59.82.178:/var/www/html/mnrt/shared/public/files/collect_app_demo.apk
+        export _time='mnrt_'$(date +%s)'_collect_app.apk'
+        scp ~/work/docs/mnrtmobile/mnrt_collect/release/app-release.apk deploy@41.59.82.178:/var/www/html/mnrt/shared/public/files/\\$_time\\
+        echo 'new upload name = '$_time
+        #ssh deploy@41.59.82.178 'bash -s' < ~/deploy_script/mnrt_apk_deploy.sh
+    fi
+
     echo 'Done........'
 }
 
@@ -138,14 +150,12 @@ masam_public_ip(){
 bash_test(){
     ssh acex1@41.59.225.90 'bash -s' < ~/mnrt/remote-backup.sh
 }
+
 kbearer(){
-    export JWT_AUTH_TOKEN=$1;
-}
-kweb(){
-    http "$@" --auth-type=jwt -j  --pretty=all | less -R;
+    export JWT_AUTH_TOKEN=$1
 }
 
-kv(){
-    cd ~/work/projects/$1
-    vi
+k_web(){
+    http "$1" --auth-type=jwt -j  --pretty=all | less -R
 }
+

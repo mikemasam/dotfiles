@@ -1,3 +1,4 @@
+set nocompatible              " be iMproved, required
 call plug#begin("~/.vim/plugged")
 
 Plug 'vim-airline/vim-airline'
@@ -40,15 +41,19 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-conflicted'
 Plug 'fatih/vim-go'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'ryanoasis/vim-devicons'
 "Plug 'tomtom/tcomment_vim'
 "Plug 'm2mdas/phpcomplete-extended'
 "Plug 'ludovicchabant/vim-gutentags'
 "Plug 'w0rp/ale'
 Plug 'StanAngeloff/php.vim'
+Plug 'eugen0329/vim-esearch'
+Plug 'MarSoft/nerdtree-grep-plugin'
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>
-nmap <space>fu :Hupload<CR>
+nmap <space>fu :!scp % acex1@41.59.225.221:/var/www/html/%
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
@@ -65,6 +70,7 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :silent Gpush<CR>
 nnoremap <space>gpl :silent Gpull<CR>
+nmap <leader>bf :Buffers<CR>
 "let g:gitgutter_highlight_lines = 1
 "let g:NERDTreeShowIgnoredStatus = 1
 set signcolumn=yes
@@ -84,8 +90,26 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = '^'
+nmap <Leader>s :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let g:NERDTreeDirArrowExpandable = '▸'
+"let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeShowLineNumbers=1
+"let NERDTreeShowHidden=1
+"let NERDTreeMinimalUI = 1
 
-let g:airline#extensions#ale#enabled = 1
+
+
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " => Remap Keys
+ " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " "Remap ESC to ii
+ :imap ii <Esc>
+
+
+"let g:airline#extensions#ale#enabled = 1
 let g:syntastic_php_checkers = ['phpmd', 'php']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -160,6 +184,9 @@ set hlsearch
 set smartindent
 
 set nocursorline
+"make sure the airline status shows even on single files
+set laststatus=2
+
 "set synmaxcol=120
 "disable ctrlp caching
 let g:ctrlp_use_caching = 0
@@ -180,8 +207,6 @@ set background=dark
 colorscheme onedark
 let mapleader=","
 let maplocalleader=","
-nmap <Leader>s :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 imap jj <ESC>
 imap kk <ESC>
 imap jk <ESC>
@@ -213,13 +238,11 @@ nnoremap <Leader>w :bprevious<CR>
 
 nmap <space> :
 vmap <space> <Esc>
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = '^'
 let g:airline_powerline_fonts = 1
 execute pathogen#infect()
 
 
-set statusline+=%{fugitive#statusline()}
+"set statusline+=%{fugitive#statusline()}
 set statusline+=%{ConflictedVersion()}
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
