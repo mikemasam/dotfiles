@@ -119,10 +119,10 @@ kdeploy(){
     fi
 
     if [ $1 == 'mnrt_apk' ]; then
-        scp ~/work/docs/mnrtmobile/release/app-release.apk deploy@41.59.82.178:/var/www/html/mnrt/shared/public/files/app.apk
+        rsync -avz --progress ~/work/docs/mnrtmobile/release/app-release.apk deploy@41.59.82.178:/var/www/html/mnrt/shared/public/files/app.apk
         export _time='mnrt_'$(date +%s)'_app.apk'
-        scp ~/work/docs/mnrtmobile/release/app-release.apk deploy@41.59.82.178:/var/www/html/mnrt/shared/public/files/\\$_time\\
-        echo 'new upload name = '$_time
+#        rsync -avz --progress ~/work/docs/mnrtmobile/release/app-release.apk deploy@41.59.82.178:/var/www/html/mnrt/shared/public/files/\\$_time\\
+#        echo 'new upload name = '$_time
         #ssh deploy@41.59.82.178 'bash -s' < ~/deploy_script/mnrt_apk_deploy.sh
     fi
 
