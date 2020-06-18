@@ -5,8 +5,6 @@ let maplocalleader=","
 
 call plug#begin("~/.vim/plugged")
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'joshdick/onedark.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -14,7 +12,6 @@ Plug 'OrangeT/vim-csharp'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "Plug 'burnettk/vim-angular'
-Plug 'pangloss/vim-javascript'
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
@@ -37,7 +34,8 @@ Plug 'christoomey/vim-conflicted'
 Plug 'fatih/vim-go'
 Plug 'StanAngeloff/php.vim'
 Plug 'eugen0329/vim-esearch'
-Plug 'MarSoft/nerdtree-grep-plugin'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>

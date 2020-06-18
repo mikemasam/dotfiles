@@ -63,3 +63,4 @@ alias l='ls -CF'
 #export GOROOT="$HOME/workspace/go/"
 #export PATH="$PATH:/usr/bin/"
 export PATH="/home/$USER/.config/composer/vendor/bin:$PATH"
+PROMPT_DIRTRIM=1
