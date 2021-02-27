@@ -7,11 +7,8 @@ call plug#begin("~/.vim/plugged")
 
 Plug 'joshdick/onedark.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'OrangeT/vim-csharp'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-"Plug 'burnettk/vim-angular'
 Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
@@ -21,21 +18,24 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'elzr/vim-json'
 Plug 'yggdroot/indentline'
 Plug 'edkolev/tmuxline.vim'
-Plug 'edkolev/promptline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sbdchd/neoformat'
 Plug 'kien/ctrlp.vim'
 Plug 'blueyed/vim-diminactive'
 Plug 'mikemasam/vim-hsftp'
-Plug 'vim-scripts/Greplace.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-conflicted'
-Plug 'fatih/vim-go'
 Plug 'StanAngeloff/php.vim'
 Plug 'eugen0329/vim-esearch'
-Plug 'yuezk/vim-js'
+"Plug 'yuezk/vim-js'
+Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ap/vim-buftabline'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>
@@ -138,7 +138,7 @@ let g:ctrlp_working_path_mode = 0
 "set completeopt-=preview
 "set completeopt+=menu,menuone,noinsert,noselect
 "set shortmess+=c
-
+let g:javascript_plugin_flow = 1
 
 "GT to move between open file
 set backupcopy=yes
@@ -172,6 +172,10 @@ set smartindent
 set nocursorline
 "make sure the airline status shows even on single files
 set laststatus=2
+set directory=~/.vim/swap/
+
+filetype indent on
+filetype plugin indent on
 
 "set synmaxcol=120
 "disable ctrlp caching
@@ -184,6 +188,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
+nnoremap ff :Ag<CR>
 
 "set background=light
 "autocmd vimenter * NERDTree
