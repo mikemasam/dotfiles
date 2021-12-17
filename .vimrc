@@ -1,4 +1,5 @@
 set nocompatible              " be iMproved, required
+filetype off
 
 let mapleader=","
 let maplocalleader=","
@@ -39,7 +40,6 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 nmap <space>] :TagbarToggle<CR>
-nmap <space>fu :!scp % acex1@41.59.225.221:/var/www/html/%
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
@@ -173,7 +173,6 @@ set nocursorline
 "make sure the airline status shows even on single files
 set laststatus=2
 set directory=~/.vim/swap/
-
 filetype indent on
 filetype plugin indent on
 
