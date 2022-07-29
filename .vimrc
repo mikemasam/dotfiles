@@ -1,19 +1,27 @@
 set nocompatible              " be iMproved, required
-filetype off
-
+"filetype off
+let loaded_matchparen = 1
+"set ttyfast
 let mapleader=","
 let maplocalleader=","
+"set guicursor=n-v-c-ve:ver25,i-ci:block
+set guicursor=a:ver25,a:blinkon0
+"-ve:block
+",r-cr:hor20,o:hor50
+
 
 call plug#begin("~/.vim/plugged")
 
+"themes
 Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-syntastic/syntastic'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-pathogen'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'elzr/vim-json'
@@ -21,7 +29,8 @@ Plug 'yggdroot/indentline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sbdchd/neoformat'
-Plug 'kien/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'blueyed/vim-diminactive'
 Plug 'mikemasam/vim-hsftp'
 Plug 'editorconfig/editorconfig-vim'
@@ -32,7 +41,9 @@ Plug 'eugen0329/vim-esearch'
 "Plug 'yuezk/vim-js'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
 Plug 'ap/vim-buftabline'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -56,89 +67,65 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :silent Gpush<CR>
 nnoremap <space>gpl :silent Gpull<CR>
-nmap <leader>bf :Buffers<CR>
 "let g:gitgutter_highlight_lines = 1
-"let g:NERDTreeShowIgnoredStatus = 1
 set signcolumn=yes
 let g:gitgutter_max_signs = 1500
 let g:airline_theme='zenburn'
 let g:airline#extensions#tabline#enabled = 1
-let g:NERDTreeIndicatorMapCustom = {
-            \ "Modified"  : "m",
-            \ "Staged"    : "+",
-            \ "Untracked" : "~",
-            \ "Renamed"   : "r",
-            \ "Unmerged"  : "-",
-            \ "Deleted"   : "d",
-            \ "Dirty"     : "x",
-            \ "Clean"     : "^",
-            \ 'Ignored'   : '!',
-            \ "Unknown"   : "?"
-            \ }
 
-"let g:NERDTreeDirArrowExpandable = '>'
-"let g:NERDTreeDirArrowCollapsible = '^'
-nnoremap <Leader>n :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"let g:NERDTreeDirArrowExpandable = '▸'
-"let g:NERDTreeDirArrowCollapsible = '▾'
-"let NERDTreeShowLineNumbers=1
-"let NERDTreeShowHidden=1
-"let NERDTreeMinimalUI = 0
+
+let $FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git'
+"fzf
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+"nnoremap <leader>fb :Buffers<CR>
+nnoremap ff :Ag<CR>
+nmap <leader>fb :Buffers<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>gs :GFiles?<CR>
 
 
 
- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- " => Remap Keys
- " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- " "Remap ESC to ii
- :imap ii <Esc>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Remap Keys
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "Remap ESC to ii
+:imap ii <Esc>
 
 
 "let g:airline#extensions#ale#enabled = 1
+
 let g:syntastic_php_checkers = ['phpmd', 'php']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_php_phpcs_args = "--standard=psr2"
 let g:syntastic_php_phpmd_exec = './bin/phpmd'
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ["gofmt","go", "govet", "errcheck"]
 
-"let g:phpcomplete_relax_static_constraint = 1
-"let g:phpcomplete_complete_for_unknown_classes = 1
-"let g:phpcomplete_parse_docblock_comments = 1
-"let g:phpcomplete_cache_taglists = 1
-"let g:phpcomplete_enhance_jump_to_definition = 1
 "set completeopt=noinsert,menuone,noselect
 
-"For YCM
-"setlocal omnifunc=phpcomplete#CompletePHP
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"
-"let g:ycm_seed_identifiers_with_syntax = 1
-"let g:ycm_collect_identifiers_from_tags_files = 1
-"
-"autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
-"let g:phpcomplete_index_composer_command = "composer"
-
-"For PHP Autocompilation
-"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"let g:autotagTagsFile=".git/tags"
-"let g:autotagDisabled=1
 let g:gutentags_cache_dir="~/work/tmp"
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"
+"let g:ctrlp_custom_ignore = 'node_modules\|bower_compnents\|DS_Store\|git'
+"let g:ctrlp_max_files = 0
+"" Search with ctrl+p from current directory instead of project root
+"let g:ctrlp_working_path_mode = 0
 
-let g:ctrlp_custom_ignore = 'node_modules\|bower_compnents\|DS_Store\|git'
-let g:ctrlp_max_files = 0
-" Search with ctrl+p from current directory instead of project root
-let g:ctrlp_working_path_mode = 0
-
-"let g:EditorConfig_core_mode = 'external_command'
-"set completeopt-=preview
-"set completeopt+=menu,menuone,noinsert,noselect
 "set shortmess+=c
 let g:javascript_plugin_flow = 1
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 "GT to move between open file
 set backupcopy=yes
@@ -153,10 +140,11 @@ set showmatch
 set hlsearch
 set smartindent
 set incsearch
+set relativenumber
 syntax on
 set cursorline
 set number
-set lazyredraw
+"set lazyredraw
 set wildignorecase
 set t_Co=256
 set laststatus=2
@@ -169,7 +157,7 @@ set showmatch
 set hlsearch
 set smartindent
 
-set nocursorline
+"set nocursorline
 "make sure the airline status shows even on single files
 set laststatus=2
 set directory=~/.vim/swap/
@@ -187,13 +175,16 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
-nnoremap ff :Ag<CR>
 
-"set background=light
-"autocmd vimenter * NERDTree
-syntax enable
-set background=dark
+"set background=dark
+set background=light
 colorscheme onedark
+"colorscheme dracula
+"colorscheme PaperColor
+"colorscheme onehalfdark
+"colorscheme onehalflight
+
+
 imap jj <ESC>
 imap kk <ESC>
 imap jk <ESC>
@@ -228,13 +219,8 @@ vmap <space> <Esc>
 execute pathogen#infect()
 
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
-let g:syntastic_go_checkers = ["gofmt","go", "govet", "errcheck"]
 
 
 set directory^=$HOME/.vim/swaps//
@@ -243,5 +229,5 @@ set directory^=$HOME/.vim/swaps//
 " Uncomment the following to have Vim jump to the last position when
 " " reopening a file
 if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
