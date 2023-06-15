@@ -1,3 +1,9 @@
+-- vim.schedule(function()
+--   vim.cmd([[
+--    set clipboard=unnamed
+--   ]])
+-- end);
+
 vim.cmd([[
 set nocompatible              " be iMproved, required
 if has('termguicolors')
@@ -11,7 +17,7 @@ let mapleader=";"
 let maplocalleader=";"
 set mouse=
 "set guicursor=n-v-c-ve:ver25,i-ci:block
-"set guicursor=a:ver25,a:blinkon0
+set guicursor=a:ver25,a:blinkon0
 "-ve:block
 ",r-cr:hor20,o:hor50
 
@@ -49,6 +55,7 @@ let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-x': 'split',
 \ 'ctrl-v': 'vsplit' }
+let g:fzf_preview_window = ['right,50%', 'ctrl-/']
 "file grep
 nnoremap ff :Ag<CR>
 "buffer list
@@ -61,6 +68,8 @@ nnoremap <leader>g :GFiles<CR>
 " git changed files
 nnoremap <leader>s :GFiles?<CR>
 
+nnoremap <leader>r :lua require('rest-nvim').run()<CR>
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,18 +77,6 @@ nnoremap <leader>s :GFiles?<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "Remap ESC to ii
 :imap ii <Esc>
-
-
-
-"set completeopt=noinsert,menuone,noselect
-
-let g:gutentags_cache_dir="~/work/tmp"
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"
-"let g:ctrlp_custom_ignore = 'node_modules\|bower_compnents\|DS_Store\|git'
-"let g:ctrlp_max_files = 0
-"" Search with ctrl+p from current directory instead of project root
-"let g:ctrlp_working_path_mode = 0
 
 "set shortmess+=c
 " set filetypes as typescriptreact
@@ -162,11 +159,11 @@ nnoremap qq :bd<CR>
 " imap ww :w<CR>
 
 "mult terminal copy paste
-"set clipboard=unnamed
+" set clipboard=unnamed
 
 " 'quote' a word
 nmap qg :silent! normal mpea`<Esc>bi`<Esc>`pl
-" " double "quote" a word
+" " "double" "quote" a word
 nmap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
 nmap dq :silent! normal mpea"<Esc>bi"<Esc>`pl
 " " remove quotes from a word
