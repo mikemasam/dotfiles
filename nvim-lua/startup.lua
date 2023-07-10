@@ -1,3 +1,0 @@
-require("treesitter")
-
-print("started")

@@ -1,0 +1,16 @@
+require("plugins");
+require("installs/bufferline");
+require("installs/cmp");
+require("installs/lualine");
+require("installs/neoscroll");
+require("installs/null-ls");
+require("installs/nvim-tree");
+require("installs/prettier");
+require("installs/treesitter");
+require("installs/nvim-icons");
+require("installs/lsp");
+require("installs/icons");
+require("installs/telescope");
+require("installs/lsp-inlayhints");
+require("installs/symbol-outline");
+require("vi");
