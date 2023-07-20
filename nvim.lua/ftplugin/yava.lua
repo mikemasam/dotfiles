@@ -6,6 +6,7 @@ local capabilities = require("lvim.lsp").common_capabilities()
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then
+   vim.notify("unable to load nvim-jdtls", "error")
 	return
 end
 
@@ -25,6 +26,7 @@ end
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
+  vim.notify("unable to load nvim-jdtls 2", "error")
 	return
 end
 
@@ -222,6 +224,7 @@ vim.cmd([[command! -buffer JdtUpdateConfig lua require('jdtls').update_project_c
 
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
+  vim.notify("unable to load nvim-jdtls :which-key", "error")
 	return
 end
 

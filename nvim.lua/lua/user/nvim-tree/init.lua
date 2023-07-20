@@ -5,6 +5,7 @@ end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
+  print "config_status_ok"
   return
 end
 
@@ -35,11 +36,8 @@ nvim_tree.setup {
   -- },
   -- disable_netrw = true,
   -- hijack_netrw = true,
-  -- open_on_setup = false,
-  ignore_ft_on_setup = { "startify", "dashboard", "alpha" },
   filters = { custom = { ".git" }, exclude = { ".gitignore" } },
   -- auto_close = true,
-  -- open_on_tab = false,
   -- hijack_cursor = false,
   update_cwd = true,
   -- update_to_buf_dir = {
