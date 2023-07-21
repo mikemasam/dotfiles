@@ -60,8 +60,6 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim"
-  use "SmiteshP/nvim-navic"
-  use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
 
   use "RRethy/vim-illuminate"
@@ -88,15 +86,10 @@ return packer.startup(function(use)
   -- Syntax/Treesitter
   use "nvim-treesitter/nvim-treesitter"
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
   -- use "windwp/nvim-ts-autotag"
   use "nvim-treesitter/nvim-treesitter-textobjects"
   use "kylechui/nvim-surround"
-  use {
-    "abecodes/tabout.nvim",
-    wants = { "nvim-treesitter" }, -- or require if not used so far
-  }
 
   -- Marks
   use "christianchiarulli/harpoon"
@@ -134,7 +127,6 @@ return packer.startup(function(use)
   use "stevearc/dressing.nvim"
   use "ghillb/cybu.nvim"
   use "moll/vim-bbye"
-  use "lewis6991/impatient.nvim"
   use "lalitmee/browse.nvim"
 
   -- Registers
@@ -146,9 +138,6 @@ return packer.startup(function(use)
   -- Debugging
   use "mfussenegger/nvim-dap"
   use "rcarriga/nvim-dap-ui"
-
-  -- Statusline
-  use "christianchiarulli/lualine.nvim"
 
   -- Startup
   use "goolord/alpha-nvim"
@@ -174,12 +163,8 @@ return packer.startup(function(use)
   use "folke/todo-comments.nvim"
   --[[ use "B4mbus/todo-comments.nvim" ]]
 
-  -- Terminal
-  use "akinsho/toggleterm.nvim"
-
   -- Project
   use "ahmedkhalf/project.nvim"
-  use "nvim-pack/nvim-spectre"
 
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
@@ -200,10 +185,8 @@ return packer.startup(function(use)
 
   -- Editing Support
   -- use "windwp/nvim-autopairs"
-  use "monaqa/dial.nvim"
   use "nacro90/numb.nvim"
   use "andymass/vim-matchup"
-  use "folke/zen-mode.nvim"
   use "karb94/neoscroll.nvim"
   use "junegunn/vim-slash"
 
@@ -260,7 +243,7 @@ return packer.startup(function(use)
   use "mattn/emmet-vim"
   use "tpope/vim-surround"
   use "tpope/vim-dispatch"
-  use "godlygeek/tabular"
+--  use "godlygeek/tabular"
   -- use "Townk/vim-autoclose"
   use "machakann/vim-highlightedyank"
   use "terryma/vim-multiple-cursors"
@@ -289,4 +272,6 @@ return packer.startup(function(use)
   end
 
   use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
+
+  use { 'dstein64/vim-startuptime' }
 end)

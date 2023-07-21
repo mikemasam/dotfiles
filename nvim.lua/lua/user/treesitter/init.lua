@@ -28,23 +28,6 @@ configs.setup {
   indent = { enable = true, disable = { "python", "rust" } },
   context_commentstring = { enable = true, enable_autocmd = false },
   autotag = { enable = true, disable = { "xml", "markdown" } },
-  rainbow = {
-    enable = true,
-    extended_mode = false,
-    colors = {
-      -- "#68a0b0",
-      -- "#946EaD",
-      -- "#c7aA6D",
-      "Gold",
-      "Orchid",
-      "DodgerBlue",
-      -- "Cornsilk",
-      -- "Salmon",
-      -- "LawnGreen",
-    },
-    disable = { "html" },
-  },
-  playground = { enable = true },
   textobjects = {
     select = {
       enable = true,
