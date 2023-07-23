@@ -11,16 +11,16 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
   debug = false,
   sources = {
-    formatting.deno_fmt, formatting.phpcsfixer, formatting.prettierd, formatting.lua_format.with {
+    formatting.deno_fmt, formatting.prettierd, formatting.lua_format.with {
       extra_args = {
         "--no-keep-simple-function-one-line", "--no-break-after-operator", "--column-limit=100",
         "--break-after-table-lb", "--indent-width=2"
       }
-    }, formatting.black.with {extra_args = {"--fast"}}, formatting.stylua, formatting.shfmt,
-    formatting.google_java_format, formatting.isort,
-    formatting.rubocop,
-    formatting.mix,
-    formatting.codespell.with {filetypes = {"markdown"}}, -- diagnostics.flake8,
+    }, formatting.black.with {extra_args = {"--fast"}}, formatting.shfmt,
+    formatting.google_java_format, --, formatting.isort, formatting.stylua
+    -- formatting.rubocop,
+    -- formatting.mix,
+    -- formatting.codespell.with {filetypes = {"markdown"}}, -- diagnostics.flake8,
     diagnostics.shellcheck
   }
 }

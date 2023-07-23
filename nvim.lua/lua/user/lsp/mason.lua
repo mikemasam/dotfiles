@@ -6,11 +6,11 @@ if not status_ok_1 then return end
 
 local servers = {
   "cssls", "cssmodules_ls", "html", "jdtls", "jsonls", "solc", "tflint", "terraformls",
-  "tsserver", "pyright", "yamlls", "bashls", "clangd", "rust_analyzer", "taplo", "zk@v0.10.1",
+  "tsserver", "pyright", "yamlls", "bashls", "clangd", "taplo", "zk@v0.10.1",
   "lemminx",  "intelephense", "tailwindcss",  "cssmodules_ls",
    "prismals", "volar", "gradle_ls", "groovyls"
 }
--- "gopls",
+-- "gopls","rust_analyzer", 
 -- "ruby_ls", "solargraph"
 
 local settings = {

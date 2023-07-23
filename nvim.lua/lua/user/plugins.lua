@@ -89,7 +89,7 @@ return packer.startup(function(use)
   use "nvim-treesitter/playground"
   -- use "windwp/nvim-ts-autotag"
   use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "kylechui/nvim-surround"
+  -- use "kylechui/nvim-surround"
 
   -- Marks
   use "christianchiarulli/harpoon"
@@ -227,10 +227,10 @@ return packer.startup(function(use)
   use "gpanders/editorconfig.nvim"
 
   -- elixir
-  use { "elixir-lang/vim-elixir", ft = "elixir" }
-  use { "mattreduce/vim-mix", ft = "elixir" }
-  -- use { "slashmili/alchemist.vim", ft = "elixir" }
-  use { "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" } }
+--  use { "elixir-lang/vim-elixir", ft = "elixir" }
+--  use { "mattreduce/vim-mix", ft = "elixir" }
+--  -- use { "slashmili/alchemist.vim", ft = "elixir" }
+--  use { "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" } }
 
   -- ruby & rails
   -- use "tpope/vim-rails"
