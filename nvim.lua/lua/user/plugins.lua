@@ -99,6 +99,8 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope.nvim", tag = "0.1.1" }
   use "nvim-telescope/telescope-media-files.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
+  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
 
   -- Session
   use "rmagatti/auto-session"

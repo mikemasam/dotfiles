@@ -23,7 +23,7 @@ else
 end
 
 -- Find root of project
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+local root_markers = { ".git", ".mvnw", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
   vim.notify("unable to load nvim-jdtls 2", "error")

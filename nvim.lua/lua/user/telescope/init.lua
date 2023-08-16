@@ -5,6 +5,7 @@ end
 
 local actions = require "telescope.actions"
 -- telescope.load_extension "media_files"
+
 local icons = require "user.icons"
 
 telescope.setup {
@@ -149,19 +150,19 @@ telescope.setup {
   pickers = {
 
     live_grep = {
-      theme = "dropdown",
+      -- theme = "dropdown",
     },
     grep_string = {
-      theme = "dropdown",
+      -- theme = "dropdown",
     },
     find_files = {
-      theme = "dropdown",
-      previewer = false,
+      -- theme = "dropdown",
+      -- previewer = false,
     },
     buffers = {
-      theme = "dropdown",
-      previewer = false,
-      initial_mode = "normal",
+      -- theme = "dropdown",
+      -- previewer = false,
+      -- initial_mode = "normal",
     },
     planets = {
       show_pluto = true,
@@ -202,6 +203,6 @@ telescope.setup {
       -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
       filetypes = { "png", "webp", "jpg", "jpeg" },
       find_cmd = "rg", -- find command (defaults to `fd`)
-    },
+    }
   },
 }

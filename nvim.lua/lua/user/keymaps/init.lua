@@ -26,6 +26,7 @@ imap jk <ESC>
 " nnoremap <Leader>j <C-d>
 " nnoremap <Leader>k <C-u>
 nmap <Leader>h :windo wincmd H<CR>
+nmap <Leader>w :w<CR>
 " open NvimTreeOpen
 nnoremap <C-o> :NvimTreeOpen<CR>
 nnoremap <C-s> :SymbolsOutline<CR>
