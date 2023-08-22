@@ -20,7 +20,7 @@ end
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost plugins.lua source <afile> | PackerInstall
   augroup end
 ]]
 
@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "ray-x/lsp_signature.nvim"
-  use "b0o/SchemaStore.nvim"
+-- use "b0o/SchemaStore.nvim" -- probably useless 
 
   use "RRethy/vim-illuminate"
   use { "j-hui/fidget.nvim", tag = "legacy" }
@@ -188,7 +188,7 @@ return packer.startup(function(use)
   -- Editing Support
   -- use "windwp/nvim-autopairs"
   use "nacro90/numb.nvim"
-  use "andymass/vim-matchup"
+--  use "andymass/vim-matchup" -- useless
   use "karb94/neoscroll.nvim"
   use "junegunn/vim-slash"
 

@@ -51,11 +51,11 @@ nvim_tree.setup {
   -- --   lightbulb
   renderer = {
     add_trailing = false,
-    group_empty = false,
-    highlight_git = false,
-    highlight_opened_files = "none",
+    group_empty = true,
+    highlight_git = true,
+    highlight_opened_files = "name", -- icon | name | all | none
     root_folder_modifier = ":t",
-    indent_markers = { enable = false, icons = { corner = "└ ", edge = "│ ", none = "  " } },
+    indent_markers = { enable = true, icons = { corner = "└ ", edge = "│ ", none = "  " } },
     icons = {
       webdev_colors = true,
       git_placement = "before",
