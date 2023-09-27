@@ -14,7 +14,7 @@ nnoremap ff <cmd>Telescope live_grep<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-:imap ii <Esc>
+imap ii <Esc>
 
 
 nmap <space> :

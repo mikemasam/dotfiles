@@ -3,8 +3,6 @@ if not cmp_status_ok then return end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then return end
-
-
 local buffer_fts = {"markdown", "toml", "yaml", "json"}
 
 local function contains(t, value)
@@ -14,7 +12,7 @@ end
 
 local compare = require "cmp.config.compare"
 
-require("luasnip/loaders/from_vscode").lazy_load()
+ require("luasnip/loaders/from_vscode").lazy_load()
 
 -- local check_backspace = function()
 --   local col = vim.fn.col "." - 1
@@ -45,11 +43,11 @@ cmp.setup {
     return vim.g.cmp_active
   end,
   preselect = cmp.PreselectMode.None,
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
-    end
-  },
+   snippet = {
+     expand = function(args)
+       luasnip.lsp_expand(args.body) -- For `luasnip` users.
+     end
+   },
   mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "c"}),
     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "c"}),
@@ -81,16 +79,20 @@ cmp.setup {
       else
         fallback()
       end
-    end, {"i", "s"}),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {"i", "s"})
+    end, {
+        "i", s = cmp.config.disable, c = cmp.config.disable
+      }),
+     ["<S-Tab>"] = cmp.mapping(function(fallback)
+       if cmp.visible() then
+         cmp.select_prev_item()
+       elseif luasnip.jumpable(-1) then
+         luasnip.jump(-1)
+       else
+         fallback()
+       end
+     end, {
+        "i", s = cmp.config.disable, c = cmp.config.disable
+      })
   },
   formatting = {
     fields = {"kind", "abbr", "menu"},
@@ -136,19 +138,6 @@ cmp.setup {
   },
   sources = {
     {name = "crates", group_index = 1}, {
-      name = "copilot",
-      -- keyword_length = 0,
-      max_item_count = 3,
-      trigger_characters = {
-        {
-          ".", ":", "(", "'", '"', "[", ",", "#", "*", "@", "|", "=", "-", "{", "/", "\\", "+", "?",
-          " "
-          -- "\t",
-          -- "\n",
-        }
-      },
-      group_index = 2
-    }, {
       name = "nvim_lsp",
       filter = function(entry, ctx)
         local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
@@ -157,7 +146,9 @@ cmp.setup {
         if kind == "Text" then return true end
       end,
       group_index = 2
-    }, {name = "nvim_lua", group_index = 2}, {name = "luasnip", group_index = 2}, {
+    }, {name = "nvim_lua", group_index = 2}, 
+    {name = "luasnip", group_index = 2}, 
+    {
       name = "buffer",
       group_index = 2,
       filter = function(entry, ctx)

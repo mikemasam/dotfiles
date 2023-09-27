@@ -95,18 +95,12 @@ return packer.startup(function(use)
   use "christianchiarulli/harpoon"
   use "MattesGroeger/vim-bookmarks"
 
-  -- Fuzzy Finder/Telescope
-  use { "nvim-telescope/telescope.nvim", tag = "0.1.1" }
+  -- Fuzzy Finder/Telescope  , tag = "0.1.1"
+  use { "nvim-telescope/telescope.nvim" }
   use "nvim-telescope/telescope-media-files.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
   -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-
-  -- Session
-  use "rmagatti/auto-session"
-
-  -- Note Taking
-  use "mickael-menu/zk-nvim"
 
   -- Color
   use "NvChad/nvim-colorizer.lua"
@@ -116,6 +110,7 @@ return packer.startup(function(use)
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
   use "folke/tokyonight.nvim"
+
   -- If you are using Packer
   use "shaunsingh/solarized.nvim"
   use "rose-pine/neovim"
@@ -145,7 +140,7 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
 
   -- Indent
-  use "lukas-reineke/indent-blankline.nvim"
+  -- use "lukas-reineke/indent-blankline.nvim"
 
   -- File Explorer
   -- use "kyazdani42/nvim-tree.lua"
