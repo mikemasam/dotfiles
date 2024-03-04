@@ -26,7 +26,7 @@ map("n", "<space>gs", "<cmd>:Git<CR>")
 map("n", "<space>gc", "<cmd>:Git commit -v -q<CR>")
 map("n", "<space>gd", "<cmd>:Gdiff<CR>")
 
-map("n", "<C-o>", "<cmd>:Neotree source=filesystem reveal=true position=left<CR>")
+map("n", "<C-o>", "<cmd>:NvimTreeOpen<CR>")
 
 -- local opts = { noremap = true, silent = true }
 -- map("n", "<C-j>", "<Down>", opts)
