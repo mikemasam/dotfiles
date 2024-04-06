@@ -29,6 +29,8 @@ map("n", "<space>gd", "<cmd>:Gdiff<CR>")
 -- map("n", "<C-o>", "<cmd>:NvimTreeOpen<CR>")
 map("n", "<C-o>", "<cmd>:NvimTreeFindFile<CR>")
 
+map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
 -- local opts = { noremap = true, silent = true }
 -- map("n", "<C-j>", "<Down>", opts)
 -- map("n", "<C-k>", "<Up>", opts)

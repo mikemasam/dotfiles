@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.g.mapleader = ";"
+vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
+vim.g.autoformat = false 
