@@ -30,6 +30,8 @@ map("n", "<space>gd", "<cmd>:Gdiff<CR>")
 map("n", "<C-o>", "<cmd>:NvimTreeFindFile<CR>")
 
 map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
+map("n", "gn", "<cmd>lua vim.diagnostic.goto_next( {severity=vim.diagnostic.severity.ERROR, wrap = true} )<CR>")
+
 
 -- local opts = { noremap = true, silent = true }
 -- map("n", "<C-j>", "<Down>", opts)
