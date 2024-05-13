@@ -1,6 +1,4 @@
-
 return {
   "nvim-treesitter/nvim-treesitter",
-  opts = {
-  }
+  --- version = "v0.9.2",
 }

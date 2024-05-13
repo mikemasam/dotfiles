@@ -5,3 +5,4 @@
 vim.g.mapleader = ";"
 vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 vim.g.autoformat = false 
+vim.opt.smartindent = false

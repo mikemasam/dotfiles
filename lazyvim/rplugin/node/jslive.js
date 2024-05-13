@@ -22,6 +22,8 @@ let output_buffer = null;
 const util = require("util");
 async function init_win(plugin) {
   if (output_win) {
+    //await runEmitter("Error:", JSON.stringify(output_win));
+    //plugin.nvim.command(`buffer ${output_buffer.id}`);
     //if (await output_win.valid) return output_win;
     //output_win?.close?.();
     return output_win;
@@ -153,7 +155,7 @@ function onTask(plugin) {
         init_win(plugin),
         startRelp(),
       ]);
-
+      await plugin.nvim.feedKeys('\x1b', 'n', true);
       runInject?.(lines);
     } catch (err) {
       await runEmitter("Error:", err);

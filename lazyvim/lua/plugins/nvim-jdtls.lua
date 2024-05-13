@@ -31,6 +31,16 @@ return {
       local config = {
         cmd = {
           install_path .. "/bin/jdtls",
+          "--Dosgi.bundles.defaultStartLevel=4",
+          "--Dexlipse.product=org.eclipse.jdt.ls.core.product",
+          "--Dlog.level=ALL",
+          "--Dlog.protocol=true",
+          "--add-modules=ALL-SYSTEM",
+          "--add-opens",
+          "java.base/java.util=ALL_UNNAMED",
+          "--add-opens",
+          "java.base/java.lang=ALL_UNNAMED",
+          "--Xmx1g",
           "--jvm-arg=-javaagent:" .. install_path .. "/lombok.jar",
           "-data",
           workspace_dir,
