@@ -20,6 +20,7 @@ let output_win = null;
 let output_buffer = null;
 
 const util = require("util");
+
 async function init_win(plugin) {
   if (output_win) {
     //await runEmitter("Error:", JSON.stringify(output_win));
@@ -66,7 +67,9 @@ async function startRelp() {
     let readableStream = new Readable({
       read() {
         if (!runInject) {
-          this.push("const liverequire = (module_path) => { delete require.cache[require.resolve(module_path)]; return require(module_path);}\n")
+          this.push(
+            "const liverequire = (module_path) => { delete require.cache[require.resolve(module_path)]; return require(module_path);}\n",
+          );
           runInject = (lines) => {
             this.push(lines.join("\n") + "\n");
           };
@@ -87,34 +90,61 @@ async function startRelp() {
   });
 }
 
-function initContext(){
-    const Consola = {
-      any(m, ...a) {
-        runEmitter?.(`${m}:`, ...a);
-      }
+const { table, getBorderCharacters } = require("table");
+const config = {
+  singleLine: true,
+  border: getBorderCharacters("ramac"),
+};
+function flattenData(input) {
+  if (typeof input === "object") {
+    if (Array.isArray(input)) {
+      if (!input.length) return false;
+      const headers = Object.keys(input[0]);
+      const data = input.map((item) => Object.values(item));
+      return [headers, ...data];
+    } else {
+      const headers = Object.keys(input);
+      const data = Object.values(input);
+      return [headers, data];
     }
-    const cpx = new Proxy(Consola, {
-      get(target, prop) {
-        return (...args) => target.any(prop, ...args);
-      },
-    });
+  } else {
+    return [[input]];
+  }
+}
+function initContext() {
+  const Consola = {
+    any(m, ...a) {
+      if (m == "table") {
+        const t = table ? flattenData(a[0]) : false;
+        if(Array.isArray(t)) return runEmitter?.(`${m}:`, table(t, config));
+      } 
+      runEmitter?.(`${m}:`, ...a);
+    },
+  };
+  const cpx = new Proxy(Consola, {
+    get(target, prop) {
+      return (...args) => {
+        target.any(prop, ...args);
+      };
+    },
+  });
 
-    Object.defineProperty(replServer.context, "console", {
-      __proto__: null,
-      configurable: true,
-      writable: true,
-      value: cpx,
-    });
+  Object.defineProperty(replServer.context, "console", {
+    __proto__: null,
+    configurable: true,
+    writable: true,
+    value: cpx,
+  });
 }
 
-async function clearOutput(win){
+async function clearOutput(win) {
   await win.buffer.setLines([], { start: 0, end: -1, strictIndexing: false });
   initContext();
 }
 async function writeLn(plugin, win, type, ...t) {
   try {
-    if(type == "console:"){
-      if(t[0].indexOf("Clearing") == 0){
+    if (type == "console:") {
+      if (t[0].indexOf("Clearing") == 0) {
         await clearOutput(win);
         return;
       }
@@ -133,7 +163,7 @@ async function writeLn(plugin, win, type, ...t) {
 
     await plugin.nvim.call("nvim_win_set_cursor", [
       win.id,
-      [totalLines - 1, 0]
+      [totalLines - 1, 0],
     ]);
   } catch (err) {
     await win.buffer.append([err.toString(), err?.stack.split("\n").join(",")]);
@@ -155,7 +185,7 @@ function onTask(plugin) {
         init_win(plugin),
         startRelp(),
       ]);
-      await plugin.nvim.feedKeys('\x1b', 'n', true);
+      await plugin.nvim.feedKeys("\x1b", "n", true);
       runInject?.(lines);
     } catch (err) {
       await runEmitter("Error:", err);

@@ -7,7 +7,7 @@ return {
   },
   config = function()
     require("nvim-tree").setup({
-      filters = { custom = { "^.git$", "^node_modules$" } },
+      filters = { custom = { "^.git$", "^/node_modules$" } },
     })
   end,
 }

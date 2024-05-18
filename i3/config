@@ -196,4 +196,5 @@ bindsym $mod+Shift+period exec "i3lock -c 000000 && systemctl suspend"
 
 exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 000000\""
 for_window [title="^Android Emulator.+:[0-9]+$"] floating enable
+for_window [title="^AppDevWindowPreview$"] floating enable
 
