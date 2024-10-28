@@ -3,6 +3,7 @@ return {
   opts = {
     inlay_hints = { enabled = false },
     servers = {
+      marksman = nil,
       rust_analyzer = {},
       taplo = {
         keys = {

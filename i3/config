@@ -18,10 +18,16 @@ set $mod Mod4
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
+font pango: Noto Sans 8
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+
+exec --no-startup-id xsettingsd &
+#exec_always --no-startup-id picom --config ./picom.conf
+exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
+exec_always --no-startup-id feh --bg-scale ~/.wallpapers/mountains.jpg
 
 # The combination of xss-lock, nm-applet and wpctl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -170,8 +176,22 @@ bindsym $mod+Control+l resize grow width 10 px or 10 ppt
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        workspace_buttons yes
+        i3bar_command i3bar --transparency
         status_command i3status
-        position bottom
+        position bottom 
+        #position top 
+        colors {
+            background #2f343f00
+            #statusline #2f343f
+            separator #4b5262
+
+            # colour of border, background, and text
+            focused_workspace       #2f343f #bf616a00 #d8dee8
+            active_workspace        #2f343f00 #2f343f00 #d8dee8
+            inactive_workspace      #2f343f00 #2f343f00 #d8dee8
+            urgent_workspace        #2f343f #ebcb8b #2f343f
+        }
 }
 
 # Remap Caps Lock to CTRL
@@ -201,4 +221,7 @@ bindsym $mod+Shift+period exec "i3lock -c 000000 && systemctl suspend"
 exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 000000\""
 for_window [title="^Android Emulator.+:[0-9]+$"] floating enable
 for_window [title="^AppDevWindowPreview$"] floating enable
+#for_window [all] border none
+gaps inner 10px
+gaps outer 5px
 
