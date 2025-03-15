@@ -3,11 +3,23 @@ return {
   opts = {
     inlay_hints = { enabled = false },
     servers = {
+      angularls = {
+        enabled = false
+      },
       marksman = nil,
       rust_analyzer = {},
+      tsserver = {},
+      --[[
       tsserver = {
-        enabled = false,
+        globalPlugins = {
+          {
+            name = "@angular/language-server",
+            location = LazyVim.get_pkg_path("angular-language-server", "/node_modules/@angular-language-server"),
+            enableForWorkspaceTypeScriptVersions = false,
+          },
+        },
       },
+      ]]
       ts_ls = {
         enabled = false,
       },

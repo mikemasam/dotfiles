@@ -21,7 +21,7 @@ return {
         require("lazyvim.plugins.lsp.keymaps").on_attach(client, bufnr)
       end
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = LazyVim.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities() or nil
       local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
       -- calculate workspace dir
       local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
