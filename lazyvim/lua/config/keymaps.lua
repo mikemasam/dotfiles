@@ -34,6 +34,8 @@ map("n", "gn", "<cmd>lua vim.diagnostic.goto_next( {severity=vim.diagnostic.seve
 
 map("n", "<leader>;", "<cmd>:Ex<CR>")
 
+
+
 -- local opts = { noremap = true, silent = true }
 -- map("n", "<C-j>", "<Down>", opts)
 -- map("n", "<C-k>", "<Up>", opts)
