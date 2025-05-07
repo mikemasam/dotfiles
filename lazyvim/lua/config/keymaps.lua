@@ -13,10 +13,11 @@ vim.g.maplocalleader = ";"
 
 map("i", "jj", "<esc>")
 map("i", "jk", "<esc>")
+
 map("n", "<space>", ":")
 
 map("n", "<C-p>", "<cmd>Telescope find_files<CR>")
-map("n", "ff", "<cmd>Telescope live_grep<CR>")
+map("n", "ff", "<cmd>FzfLua live_grep<CR>")
 map("n", "<leader>b", "<cmd>Telescope buffers<CR>")
 map("n", "<Tab>", "<cmd>:bnext<CR>")
 map("n", "<S-Tab>", "<cmd>:bprev<CR>")

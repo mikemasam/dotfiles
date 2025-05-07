@@ -131,7 +131,7 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
         root_dir = vim.fs.dirname(
-          vim.fs.find({ ".gradlew", ".git", "mvnw", ".mvnw", "pom.xml", "build.gradle" }, { upward = true })[1]
+          vim.fs.find({ "gradlew", ".gradlew", ".git", "mvnw", ".mvnw", "pom.xml", "build.gradle" }, { upward = true })[1]
         ),
       }
       vim.api.nvim_create_autocmd("FileType", {

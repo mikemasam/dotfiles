@@ -2,6 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.editor.harpoon2",
     "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.angular",
     "lazyvim.plugins.extras.lang.go",
     "lazyvim.plugins.extras.lang.java",
     "lazyvim.plugins.extras.lang.json",
@@ -10,6 +11,7 @@
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.vue",
+    "lazyvim.plugins.extras.lang.zig",
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.project"
   ],

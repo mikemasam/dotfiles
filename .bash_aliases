@@ -6,10 +6,9 @@ alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias phpswitch="sudo update-alternatives --config php"
 alias start_ssh='eval "$(ssh-agent -s)" && ssh-add'
 alias vimode='set -o vi'
-alias btc='sudo bluetoothctl connect 98:47:44:7C:84:EF'
+alias btc='sudo bluetoothctl connect 98:47:44:7C:84:EF && bluetoothctl info | grep "Battery"'
 
-
-ff() {
+ffg() {
   local dir="${1:-.}" # Default to current directory if no argument is given
   cd "$dir" || return # Change directory, exit if it fails
 
@@ -87,4 +86,8 @@ ff() {
 
   # If it's a file, open it in vim
   vim "$file"
+}
+
+ff() {
+  vim $(fzf)
 }
