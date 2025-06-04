@@ -12,7 +12,7 @@
     padding = 16
     horizontal_padding = 20
     frame_width = 0 
-    corner_radius = 1 
+    corner_radius = 10 
     separator_color = auto
     frame_color = "#44475a"
     idle_threshold = 120

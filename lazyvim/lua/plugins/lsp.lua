@@ -4,7 +4,7 @@ return {
     inlay_hints = { enabled = false },
     servers = {
       angularls = {
-        enabled = false
+        enabled = false,
       },
       marksman = nil,
       rust_analyzer = {},

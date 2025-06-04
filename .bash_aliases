@@ -8,7 +8,7 @@ alias start_ssh='eval "$(ssh-agent -s)" && ssh-add'
 alias vimode='set -o vi'
 alias btc='sudo bluetoothctl connect 98:47:44:7C:84:EF && bluetoothctl info | grep "Battery"'
 
-ffg() {
+ff() {
   local dir="${1:-.}" # Default to current directory if no argument is given
   cd "$dir" || return # Change directory, exit if it fails
 
@@ -88,6 +88,6 @@ ffg() {
   vim "$file"
 }
 
-ff() {
+ffa() {
   vim $(fzf)
 }
