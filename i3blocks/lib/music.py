@@ -19,13 +19,21 @@ def run_cmd(cmd):
     except subprocess.CalledProcessError:
         return None
 
+def rofi_select(options):
+    rofi_input = '\n'.join(f"{label}" for label in options)
+    rofi = subprocess.Popen(['rofi', '-dmenu', '-p', 'Music'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    selected, _ = rofi.communicate(input=rofi_input.encode())
+    return selected.decode().strip()
 # Handle mouse buttons
-if BLOCK_BUTTON == "2":
-    subprocess.run(f"playerctl {player_arg} previous", shell=True)
-elif BLOCK_BUTTON == "1":
-    subprocess.run(f"playerctl {player_arg} play-pause", shell=True)
-elif BLOCK_BUTTON == "3":
-    subprocess.run(f"playerctl {player_arg} next", shell=True)
+if BLOCK_BUTTON == "1":
+    options = ['Play-Pause', 'Next', 'Previous']
+    selected = rofi_select(options)
+    if selected == "Play-Pause":
+        subprocess.run(f"playerctl {player_arg} play-pause", shell=True)
+    if selected == "Previous":
+        subprocess.run(f"playerctl {player_arg} previous", shell=True)
+    if selected == "Next":
+        subprocess.run(f"playerctl {player_arg} next", shell=True)
 
 # Try cmus if no player_arg or ends with 'cmus'
 if not player_arg or player_arg.endswith("cmus"):
@@ -58,4 +66,4 @@ if title is None:
     sys.exit(0)
 
 if artist or title:
-    print(f"<b>{artist or ''} - {title or ''}</b>".strip(" -"))
+    print(f" <b>🎵{artist or ''} - {title or ''}</b>".strip(" -"))

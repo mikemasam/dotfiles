@@ -1,6 +1,4 @@
-#command=/usr/share/i3blocks/$BLOCK_NAME
 command=~/.config/i3blocks/lib/$BLOCK_NAME
-#separator_block_width=15
 markup=none
 
 [music.py]
@@ -13,9 +11,9 @@ markup=pango
 label=MEM
 interval=30
 
-[public-ip]
-command=wget -qO - icanhazip.com
-interval=once
+#[public-ip]
+#command=wget -qO - icanhazip.com
+#interval=once
 
 [volume]
 label=VOL
@@ -33,9 +31,9 @@ signal=10
 #interval=30
 
 
-[wifi]
-#instance=wlp3s0
+[wifi.py]
 interval=10
+markup=pango
 
 
 [battery]
@@ -43,7 +41,6 @@ label=BAT
 label=⚡
 #instance=1
 interval=30
-
 
 
 [temperature]
