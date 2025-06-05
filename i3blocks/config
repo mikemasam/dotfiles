@@ -35,6 +35,9 @@ signal=10
 interval=10
 markup=pango
 
+[bluetooth.py]
+interval=10
+markup=pango
 
 [battery]
 label=BAT
