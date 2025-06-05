@@ -26,44 +26,22 @@ def rofi_select(options):
     return selected.decode().strip()
 # Handle mouse buttons
 if BLOCK_BUTTON == "1":
-    options = ['Play-Pause', 'Next', 'Previous']
+    options = ['Play-Pause(a)', 'Next(n)', 'Previous(r)']
     selected = rofi_select(options)
-    if selected == "Play-Pause":
+    if selected == "Play-Pause(a)":
         subprocess.run(f"playerctl {player_arg} play-pause", shell=True)
-    if selected == "Previous":
+    if selected == "Previous(r)":
         subprocess.run(f"playerctl {player_arg} previous", shell=True)
-    if selected == "Next":
+    if selected == "Next(n)":
         subprocess.run(f"playerctl {player_arg} next", shell=True)
 
-# Try cmus if no player_arg or ends with 'cmus'
-if not player_arg or player_arg.endswith("cmus"):
-    cmus_output = run_cmd("cmus-remote -Q")
-    if cmus_output:
-        artist = None
-        title = None
-        for line in cmus_output.splitlines():
-            parts = line.split()
-            if len(parts) >= 3 and parts[0] == "tag":
-                key = parts[1]
-                value = " ".join(parts[2:])
-                if key == "artist":
-                    artist = value
-                elif key == "title":
-                    title = value
-        if artist or title:
-            print(f"{artist or ''} - {title or ''}".strip(" -"))
-            sys.exit(0)
-    # If player_arg is 'cmus' exit here
-    if player_arg.endswith("cmus"):
-        sys.exit(0)
-
+status = run_cmd(f"playerctl {player_arg} status")
+if status == 'Playing':
+    status = '▶'
+elif status == 'Paused':
+    status = '𝄽'
 # Use playerctl to get artist and title
 artist = run_cmd(f"playerctl {player_arg} metadata artist")
-if artist is None:
-    sys.exit(0)
 title = run_cmd(f"playerctl {player_arg} metadata title")
-if title is None:
-    sys.exit(0)
-
 if artist or title:
-    print(f" <b>🎵{artist or ''} - {title or ''}</b>".strip(" -"))
+    print(f" <b>{status} {artist or '^'} - {title or '^'}</b>".strip(" -"))
