@@ -11,9 +11,6 @@ markup=pango
 label=MEM
 interval=30
 
-#[public-ip]
-#command=wget -qO - icanhazip.com
-#interval=once
 
 [volume]
 label=VOL
@@ -31,6 +28,10 @@ signal=10
 #interval=30
 
 
+#[bandwidth]
+#instance=eth0
+#interval=5
+
 [wifi.py]
 interval=10
 markup=pango
@@ -46,14 +47,14 @@ label=⚡
 interval=30
 
 
-[temperature]
-label=TEMP
-interval=10
 
 [cpu_usage]
 interval=10
 min_width=CPU: 100.00%
 markup=pango
+
+[temperature]
+interval=10
 
 
 
