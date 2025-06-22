@@ -43,11 +43,11 @@ $cpu_usage eq -1 and die 'Can\'t find CPU information';
 my $color;
 # Print color, if needed
 if ($cpu_usage >= $t_crit) {
-    $color = "#FF0000";
+  $color = "#FF0000";
 } elsif ($cpu_usage >= $t_warn) {
-    $color = "#FFFC00\n";
+  $color = "#FFFC00";
 } else {
-    $color = "#00FF00";  # Green
+  $color = "#00FF00";  # Green
 }
 printf "<span color='%s'> CPU: %.2f%%</span>\n", $color, $cpu_usage;
 exit 0;

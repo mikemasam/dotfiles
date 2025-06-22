@@ -32,17 +32,17 @@ signal=10
 #instance=eth0
 #interval=5
 
-[wifi.py]
-interval=10
-markup=pango
+#[wifi.py]
+#interval=10
+#markup=pango
 
 [bluetooth.py]
 interval=10
 markup=pango
 
-[battery]
+[battery2.py]
 label=BAT
-label=⚡
+label=
 #instance=1
 interval=30
 

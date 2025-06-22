@@ -7,6 +7,7 @@ alias phpswitch="sudo update-alternatives --config php"
 alias start_ssh='eval "$(ssh-agent -s)" && ssh-add'
 alias vimode='set -o vi'
 alias btc='sudo bluetoothctl connect 98:47:44:7C:84:EF && bluetoothctl info | grep "Battery"'
+alias bbg='DISPLAY=:0 feh --bg-scale "$(find ~/.wallpapers -type f | shuf -n 1)"'
 
 ff() {
   local dir="${1:-.}" # Default to current directory if no argument is given
