@@ -1,3 +1,5 @@
+return {};
+--[[
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -17,3 +19,4 @@ return {
     table.insert(opts.sources, { name = "crates" })
   end,
 }
+--]]
