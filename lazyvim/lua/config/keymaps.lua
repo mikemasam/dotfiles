@@ -8,8 +8,6 @@ local Util = require("lazyvim.util")
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
 local map = Util.safe_keymap_set
-vim.g.mapleader = ";"
-vim.g.maplocalleader = ";"
 
 map("i", "jj", "<esc>")
 map("i", "jk", "<esc>")
