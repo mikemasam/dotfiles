@@ -2,6 +2,7 @@
 import os
 import sys
 import subprocess
+import re
 
 def rofi_select(options):
     rofi_input = '\n'.join(f"{label}" for label in options)
@@ -21,7 +22,15 @@ def connected_device():
     info = run_cmd("bluetoothctl info")
     if info and len(info.splitlines()) > 0:
         lines = info.splitlines();
-        return { "id": lines[0].split(" ")[1].strip(), "name": lines[1].split(": ", 1)[1].strip() };
+        id = lines[0].split(" ")[1].strip();
+        name = lines[1].split(": ", 1)[1].strip();
+        battery = ""
+        for line in reversed(lines):
+            if "Battery Percentage" in line:
+                last_word = line.strip().split()[-1]
+                battery = re.sub(r"\D", "", last_word)
+                break
+        return { "id": id, "name": name, "battery": battery };
     return  None 
 def get_devices():
     lines = run_cmd("bluetoothctl devices").splitlines()
@@ -60,7 +69,7 @@ def print_current():
     if current is None:
         print(f" <b>🔵Disconnected </b>")
     else:
-        print(f" <b>🔵{current['name']} </b>")
+        print(f" <b>🔵{current['name']} {current['battery']}% </b>")
 
 def main():
     block_button = os.getenv('BLOCK_BUTTON')
