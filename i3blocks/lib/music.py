@@ -9,6 +9,9 @@ player_arg = ""
 BLOCK_INSTANCE = os.getenv("BLOCK_INSTANCE")
 BLOCK_BUTTON = os.getenv("BLOCK_BUTTON")
 
+if len(sys.argv) > 1 and sys.argv[1] == "control":
+    BLOCK_BUTTON = "1" 
+
 if BLOCK_INSTANCE:
     player_arg = f"--player={BLOCK_INSTANCE}"
 
@@ -21,7 +24,9 @@ def run_cmd(cmd):
 
 def rofi_select(options):
     rofi_input = '\n'.join(f"{label}" for label in options)
-    rofi = subprocess.Popen(['rofi', '-dmenu', '-p', 'Music'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    title = run_cmd(f"playerctl {player_arg} metadata title")
+    artist = run_cmd(f"playerctl {player_arg} metadata artist")
+    rofi = subprocess.Popen(['rofi', '-dmenu', '-p', f"Playing {title or 'None'} by {artist or 'None'}"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     selected, _ = rofi.communicate(input=rofi_input.encode())
     return selected.decode().strip()
 # Handle mouse buttons

@@ -73,6 +73,9 @@ def print_current():
 
 def main():
     block_button = os.getenv('BLOCK_BUTTON')
+
+    if len(sys.argv) > 1 and sys.argv[1] == "control":
+        block_button = "1" 
     if block_button == '1':
         make_connection()
     print_current()

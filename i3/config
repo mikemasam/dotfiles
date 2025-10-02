@@ -55,6 +55,9 @@ floating_modifier $mod
 bindsym $mod+Return exec gnome-terminal
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+i exec --no-startup-id "nota | sed -r 's/\x1B\[[0-9;]*[mK]//g' | rofi -dmenu -p Nota"
+bindsym $mod+m exec --no-startup-id ~/.config/i3blocks/lib/music.py control
+bindsym $mod+b exec --no-startup-id ~/.config/i3blocks/lib/bluetooth.py control
+
 
 
 bindsym $mod+e exec nautilus

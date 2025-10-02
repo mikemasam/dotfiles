@@ -9,7 +9,7 @@ markup=pango
 
 [memory]
 label=MEM
-interval=30
+interval=5
 
 
 [volume]
@@ -49,7 +49,7 @@ interval=30
 
 
 [cpu_usage]
-interval=10
+interval=3
 min_width=CPU: 100.00%
 markup=pango
 
