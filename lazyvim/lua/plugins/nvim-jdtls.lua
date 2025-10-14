@@ -26,7 +26,8 @@ return {
       -- calculate workspace dir
       local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
       -- get the mason install path
-      local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
+      local install_path = vim.fn.expand("$MASON/packages/jdtls")
+      -- local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
       -- local debug_install_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
       local config = {
         cmd = {
@@ -50,6 +51,7 @@ return {
           ["java.format.settings.url"] = home .. "/.config/nvim/formatters/java-google-formatter.xml",
           ["java.format.settings.profile"] = "GoogleStyle",
           java = {
+            java_executable = "/usr/bin/java",
             format = {
               settings = {
                 -- Use Google Java style guidelines for formatting

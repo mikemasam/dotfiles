@@ -54,6 +54,7 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec gnome-terminal
 bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Tab exec --no-startup-id rofi -show window
 bindsym $mod+i exec --no-startup-id "nota | sed -r 's/\x1B\[[0-9;]*[mK]//g' | rofi -dmenu -p Nota"
 bindsym $mod+m exec --no-startup-id ~/.config/i3blocks/lib/music.py control
 bindsym $mod+b exec --no-startup-id ~/.config/i3blocks/lib/bluetooth.py control
@@ -233,5 +234,5 @@ for_window [all] border pixel
 default_border pixel 0
 default_floating_border pixel 0
 gaps inner 0
-gaps outer 10
+gaps outer 15
 

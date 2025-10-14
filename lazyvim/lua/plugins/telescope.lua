@@ -7,6 +7,9 @@ return {
         file_ignore_patterns = {
           "node_modules",
         },
+        preview = {
+          treesitter = false,
+        },
       },
     }
   end,

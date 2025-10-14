@@ -6,4 +6,6 @@ vim.g.mapleader = ";"
 vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
 vim.g.autoformat = false 
 vim.opt.smartindent = false
+vim.opt.conceallevel = 0 
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "white" })
+vim.o.clipboard = 'unnamedplus'
