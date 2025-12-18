@@ -130,7 +130,7 @@ return {
         flags = {
           allow_incremental_sync = true,
         },
-        on_attach = on_attach,
+        -- on_attach = on_attach,
         capabilities = capabilities,
         root_dir = vim.fs.dirname(
           vim.fs.find({ "gradlew", ".gradlew", ".git", "mvnw", ".mvnw", "pom.xml", "build.gradle" }, { upward = true })[1]

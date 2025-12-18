@@ -40,7 +40,7 @@ signal=10
 interval=10
 markup=pango
 
-[battery2.py]
+[battery.py]
 label=BAT
 label=
 #instance=1
@@ -48,13 +48,14 @@ interval=30
 
 
 
-[cpu_usage]
+[cpu_usage.py]
 interval=3
-min_width=CPU: 100.00%
 markup=pango
+min_width=U:100.0%
 
-[temperature]
+[temperature.py]
 interval=10
+markup=pango
 
 
 
