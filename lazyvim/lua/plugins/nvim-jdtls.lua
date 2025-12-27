@@ -17,12 +17,11 @@ return {
     "mfussenegger/nvim-jdtls",
     ft = "java",
     config = function()
-      local on_attach = function(client, bufnr)
-        require("lazyvim.plugins.lsp.keymaps").on_attach(client, bufnr)
-      end
-
+      local root_dir = vim.fs.dirname(
+        vim.fs.find({ "gradlew", ".gradlew", ".git", "mvnw", ".mvnw", "pom.xml", "build.gradle" }, { upward = true })[1]
+      )
+      local project_name = vim.fn.fnamemodify(root_dir, ":t")
       local capabilities = LazyVim.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities() or nil
-      local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
       -- calculate workspace dir
       local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
       -- get the mason install path
@@ -34,22 +33,24 @@ return {
           install_path .. "/bin/jdtls",
           "--Dosgi.bundles.defaultStartLevel=4",
           "--Dexlipse.product=org.eclipse.jdt.ls.core.product",
-          "--Dlog.level=ALL",
-          "--Dlog.protocol=true",
+          -- "--Dlog.level=ALL",
+          -- "--Dlog.protocol=true",
           "--add-modules=ALL-SYSTEM",
           "--add-opens",
           "java.base/java.util=ALL_UNNAMED",
           "--add-opens",
           "java.base/java.lang=ALL_UNNAMED",
-          "--Xmx1g",
+          "--Xms1g",
+          "--Xmx3g",
+          "-XX:+UseG1GC",
+          "-XX:MaxGCPauseMillis=200",
+          "-XX:+UseStringDeduplication",
           "--jvm-arg=-javaagent:" .. install_path .. "/lombok.jar",
           "-data",
           workspace_dir,
         },
 
         settings = {
-          ["java.format.settings.url"] = home .. "/.config/nvim/formatters/java-google-formatter.xml",
-          ["java.format.settings.profile"] = "GoogleStyle",
           java = {
             java_executable = "/usr/bin/java",
             format = {
@@ -57,17 +58,17 @@ return {
                 -- Use Google Java style guidelines for formatting
                 -- To use, make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
                 -- and place it in the ~/.local/share/eclipse directory
-                url = home .. "/.config/nvim/formatters/java-google-formatter.xml",
+                url = home .. "/.config/nvim/formatters/eclipse-java-google-style.xml",
                 profile = "GoogleStyle",
               },
             },
             signatureHelp = { enabled = true },
             eclipse = { downloadSources = true },
             maven = { downloadSources = true },
-            implementationsCodeLens = { enabled = true },
-            referencesCodeLens = { enabled = true },
+            implementationsCodeLens = false,
+            referencesCodeLens = false,
             references = { includeDecompiledSources = true },
-            contentProvider = { preferred = "fernflower" }, -- Use fernflower to decompile library code
+            contentProvider = { preferred = nil }, -- Use fernflower to decompile library code
             -- Specify any completion options
             completion = {
               favoriteStaticMembers = {
@@ -95,12 +96,12 @@ return {
               },
             },
             -- Specify any options for organizing imports
-            sources = {
-              organizeImports = {
-                starThreshold = 9999,
-                staticStarThreshold = 9999,
-              },
-            },
+            -- sources = {
+            --   organizeImports = {
+            --     starThreshold = 9999,
+            --     staticStarThreshold = 9999,
+            --   },
+            -- },
             -- How code generation should act
             codeGeneration = {
               toString = {
@@ -130,15 +131,18 @@ return {
         flags = {
           allow_incremental_sync = true,
         },
-        -- on_attach = on_attach,
         capabilities = capabilities,
-        root_dir = vim.fs.dirname(
-          vim.fs.find({ "gradlew", ".gradlew", ".git", "mvnw", ".mvnw", "pom.xml", "build.gradle" }, { upward = true })[1]
-        ),
+        root_dir = root_dir,
       }
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "java",
         callback = function()
+          local clients = vim.lsp.get_clients({ bufnr = 0 })
+          for _, c in ipairs(clients) do
+            if c.name == "jdtls" then
+              return
+            end
+          end
           require("jdtls").start_or_attach(config)
         end,
       })
