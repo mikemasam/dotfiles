@@ -1,5 +1,9 @@
 local home = os.getenv("HOME")
-
+-- hash workspace directory name for workspace uniqueness
+local function workspace_hash(root_dir)
+  local hash = vim.fn.sha256(root_dir):sub(1, 8)
+  return vim.fn.fnamemodify(root_dir, ":t") .. "-" .. hash
+end
 -- java lsp
 return {
   {
@@ -20,10 +24,9 @@ return {
       local root_dir = vim.fs.dirname(
         vim.fs.find({ "gradlew", ".gradlew", ".git", "mvnw", ".mvnw", "pom.xml", "build.gradle" }, { upward = true })[1]
       )
-      local project_name = vim.fn.fnamemodify(root_dir, ":t")
       local capabilities = LazyVim.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities() or nil
       -- calculate workspace dir
-      local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
+      local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. workspace_hash(root_dir)
       -- get the mason install path
       local install_path = vim.fn.expand("$MASON/packages/jdtls")
       -- local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
@@ -65,8 +68,8 @@ return {
             signatureHelp = { enabled = true },
             eclipse = { downloadSources = true },
             maven = { downloadSources = true },
-            implementationsCodeLens = false,
-            referencesCodeLens = false,
+            implementationsCodeLens = true,
+            referencesCodeLens = true,
             references = { includeDecompiledSources = true },
             contentProvider = { preferred = nil }, -- Use fernflower to decompile library code
             -- Specify any completion options
