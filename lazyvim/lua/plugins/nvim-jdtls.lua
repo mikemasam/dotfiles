@@ -43,11 +43,8 @@ return {
           "java.base/java.util=ALL_UNNAMED",
           "--add-opens",
           "java.base/java.lang=ALL_UNNAMED",
-          "--Xms1g",
-          "--Xmx3g",
-          "-XX:+UseG1GC",
-          "-XX:MaxGCPauseMillis=200",
-          "-XX:+UseStringDeduplication",
+          "--Xms526m",
+          "--Xmx2g",
           "--jvm-arg=-javaagent:" .. install_path .. "/lombok.jar",
           "-data",
           workspace_dir,
@@ -66,12 +63,12 @@ return {
               },
             },
             signatureHelp = { enabled = true },
-            eclipse = { downloadSources = true },
-            maven = { downloadSources = true },
-            implementationsCodeLens = true,
-            referencesCodeLens = true,
-            references = { includeDecompiledSources = true },
-            contentProvider = { preferred = nil }, -- Use fernflower to decompile library code
+            eclipse = { downloadSources = false },
+            maven = { downloadSources = false },
+            implementationsCodeLens = false,
+            referencesCodeLens = false,
+            references = { includeDecompiledSources = false },
+            contentProvider = { preferred = "fernflower" },
             -- Specify any completion options
             completion = {
               favoriteStaticMembers = {
@@ -90,13 +87,13 @@ return {
                 "co",
                 "org",
               },
-              filteredTypes = {
-                "com.sun.*",
-                "io.micrometer.shaded.*",
-                "java.awt.*",
-                "jdk.*",
-                "sun.*",
-              },
+              -- filteredTypes = {
+              --   "com.sun.*",
+              --   "io.micrometer.shaded.*",
+              --   "java.awt.*",
+              --   "jdk.*",
+              --   "sun.*",
+              -- },
             },
             -- Specify any options for organizing imports
             -- sources = {
