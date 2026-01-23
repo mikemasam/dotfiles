@@ -1,13 +1,13 @@
 [global]
     font = JetBrains Mono 10
     markup = full
-    format = "<b>🔔 %s</b>\n💬 %b"
+    format = "<b>🔔 %s</b> \n<i>%b</i>"
     alignment = left
     show_age_threshold = 60
     word_wrap = yes
     ellipsize = middle
     ignore_newline = no
-    transparency = 20
+    transparency = 40
     separator_height = 2
     padding = 16
     horizontal_padding = 20
@@ -18,7 +18,7 @@
     idle_threshold = 120
     monitor = 0
 
-    origin = top-center
+    origin = top-right
     offset = 20x40
     width = 450
     height = 300

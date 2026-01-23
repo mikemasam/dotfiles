@@ -205,34 +205,23 @@ bindsym Print exec --no-startup-id xfce4-screenshooter
 bindsym $mod+0 exec --no-startup-id test.sh
 
 
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id ~/.config/i3/i3lock-starter.sh, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-bindsym $mod+End mode "$mode_system"
+
+bindsym $mod+End exec --no-startup-id ~/.config/i3blocks/lib/battery.py control
+bindsym $mod+Shift+period exec --no-startup-id ~/.config/i3blocks/lib/battery.py control
+bindsym $mod+period exec --no-startup-id ~/.config/i3blocks/lib/battery.py control
+
 exec --no-startup-id xautolock -detectsleep -time 3 -locker $HOME/.config/i3/i3lock-starter.sh -killtime 8 -killer "systemctl suspend"
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/.config/i3/i3lock-starter.sh
-bindsym $mod+Shift+period exec $HOME/.config/i3/i3lock-starter.sh
 
 
 
 for_window [title="^Android Emulator.+:[0-9]+$"] floating enable
 for_window [title="^AppDevWindowPreview$"] floating enable
 for_window [all] border pixel
-default_border pixel 0
+default_border pixel 1 
 default_floating_border pixel 0
-gaps inner 0
+gaps inner 5 
 gaps outer 15
 
