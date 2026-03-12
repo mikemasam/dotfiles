@@ -37,14 +37,18 @@ def get_devices():
     networks = []
     for line in lines:
         if line:
-            parts = line.split(' ')
+            parts = line.split(maxsplit=2)
             id = parts[1]
             name = ' '.join(parts[2:]) 
             networks.append((id, name))
     return networks
 
+def bluetooth_powered():
+    out = run_cmd("bluetoothctl show")
+    return "Powered: yes" in out
+
 def make_connection():
-    current = connected_device();
+    current = connected_device()
     networks = get_devices()
     options = []
     if current:
@@ -65,9 +69,11 @@ def make_connection():
         else:
             run_cmd(f"bluetoothctl connect {selected_id}")
 def print_current():
-    current = connected_device();
+    if not bluetooth_powered():
+        print(f" <b>⚫ OFF </b>")
+    current = connected_device()
     if current is None:
-        print(f" <b>🔵Disconnected </b>")
+        print(f" <b>🔵 READY </b>")
     else:
         print(f" <b>🔵{current['name']} {current['battery']}% </b>")
 

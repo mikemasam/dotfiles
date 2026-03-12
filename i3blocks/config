@@ -12,7 +12,7 @@ label=MEM
 interval=5
 
 
-[volume]
+[volume.py]
 label=VOL
 #label=♪
 instance=Master
