@@ -17,7 +17,7 @@ return {
           quit_on_focus_loss = true,
           open_win_config = {
             relative = "editor",
-            border = "rounded",
+            -- border = "rounded",
             width = 70,
             height = 50,
             row = 1,

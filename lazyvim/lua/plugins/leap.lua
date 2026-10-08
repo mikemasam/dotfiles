@@ -1,5 +1,5 @@
 return {
-  "ggandor/leap.nvim",
+  "andyg/leap.nvim",
   enabled = false,
   opts = {
     case_sensitive = false,

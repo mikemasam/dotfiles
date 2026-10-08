@@ -8,7 +8,7 @@ signal=10
 markup=pango
 
 [memory]
-label=MEM
+label=M
 interval=5
 
 
@@ -29,7 +29,7 @@ signal=10
 
 
 #[bandwidth]
-#instance=eth0
+#instance=wlp0s20f3
 #interval=5
 
 #[wifi.py]

@@ -27,7 +27,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xsettingsd &
 #exec_always --no-startup-id picom --config ./picom.conf
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
-exec_always --no-startup-id feh --bg-scale ~/.wallpapers/remote-location.png
+exec_always --no-startup-id feh --bg-scale ~/.wallpapers/joker.jpg
 
 # The combination of xss-lock, nm-applet and wpctl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

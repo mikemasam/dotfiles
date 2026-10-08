@@ -73,7 +73,7 @@ def print_current():
         print(f" <b>⚫ OFF </b>")
     current = connected_device()
     if current is None:
-        print(f" <b>🔵 READY </b>")
+        print(f"🔵")
     else:
         print(f" <b>🔵{current['name']} {current['battery']}% </b>")
 
