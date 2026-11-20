@@ -1,9 +1,12 @@
 command=~/.config/i3blocks/lib/$BLOCK_NAME
 markup=none
 
+[title.sh]
+interval=4
+
 [music.py]
 #instance=spotify
-interval=5
+interval=10
 signal=10
 markup=pango
 
@@ -49,7 +52,7 @@ interval=30
 
 
 [cpu_usage.py]
-interval=3
+interval=5
 markup=pango
 min_width=U:100.0%
 
