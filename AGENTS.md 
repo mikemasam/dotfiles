@@ -1,0 +1,3 @@
+1. Don't run unapproved tools
+2. Never run migrations without explicitly approval 3. Make migrations using framework cli, don't write the files manually 
+4. Folow existing codebase semantics 
